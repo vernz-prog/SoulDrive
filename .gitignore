@@ -1,0 +1,14 @@
+.pio/
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+firmware/test_host/sim
+firmware/test_host/*.log
+firmware/test_host/*.txt
+firmware/test_host/frames.jsonl
+firmware/test_host/e2e_screen.png
+
+tools/preview_*.png
+docs/SoulDrive_music.wav

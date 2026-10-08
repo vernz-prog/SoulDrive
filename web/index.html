@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>SoulDrive</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<svg id="dash" viewBox="0 0 1280 600" preserveAspectRatio="xMidYMid meet">
+  <defs>
+    <radialGradient id="ring">
+      <stop offset="0" stop-color="#000"/>
+      <stop offset=".70" stop-color="#000"/>
+      <stop offset=".73" stop-color="#05070a"/>
+      <stop offset=".86" stop-color="#151b23"/>
+      <stop offset=".96" stop-color="#2c3744"/>
+      <stop offset="1" stop-color="#4a5868"/>
+    </radialGradient>
+    <radialGradient id="disk">
+      <stop offset="0" stop-color="#000"/>
+      <stop offset=".8" stop-color="#030201"/>
+      <stop offset=".95" stop-color="#2a0d03"/>
+      <stop offset="1" stop-color="#5a1e06"/>
+    </radialGradient>
+    <linearGradient id="orangeRing" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff8a45"/>
+      <stop offset=".5" stop-color="#ff6022"/>
+      <stop offset="1" stop-color="#c93a0e"/>
+    </linearGradient>
+    <linearGradient id="lineFade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ff6a26" stop-opacity="0"/>
+      <stop offset=".12" stop-color="#ff6a26"/>
+      <stop offset=".88" stop-color="#ff6a26"/>
+      <stop offset="1" stop-color="#ff6a26" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="divider" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".5" stop-color="#fff" stop-opacity=".35"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="needleGrad" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#e8460c"/>
+      <stop offset=".45" stop-color="#ff8a24"/>
+      <stop offset=".85" stop-color="#ffc94d"/>
+      <stop offset="1" stop-color="#fff0b0"/>
+    </linearGradient>
+    <linearGradient id="needleShine" x1="0" y1="1" x2="0" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="1" stop-color="#fff" stop-opacity=".9"/>
+    </linearGradient>
+    <linearGradient id="menuSel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff7a32"/>
+      <stop offset="1" stop-color="#c8400f"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#d0d4d9"/>
+      <stop offset="1" stop-color="#a7adb4"/>
+    </linearGradient>
+    <filter id="blur6" filterUnits="userSpaceOnUse" x="0" y="0" width="1280" height="600">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+    <filter id="segGlow" filterUnits="userSpaceOnUse" x="0" y="0" width="1280" height="600">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="wide"/>
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="near"/>
+      <feComponentTransfer in="wide" result="wideDim"><feFuncA type="linear" slope=".7"/></feComponentTransfer>
+      <feMerge><feMergeNode in="wideDim"/><feMergeNode in="near"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="fanBlur" x="-5%" y="-5%" width="110%" height="110%">
+      <feGaussianBlur stdDeviation="1.6"/>
+    </filter>
+    <filter id="blur3" filterUnits="userSpaceOnUse" x="0" y="0" width="1280" height="600">
+      <feGaussianBlur stdDeviation="2.5"/>
+    </filter>
+    <linearGradient id="navFadeX" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".16" stop-color="#fff"/>
+      <stop offset=".84" stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="navFadeY" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fff" stop-opacity="0"/>
+      <stop offset=".1" stop-color="#fff"/>
+      <stop offset=".88" stop-color="#fff"/>
+      <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="navMaskX" maskUnits="userSpaceOnUse" x="0" y="0" width="1280" height="600">
+      <rect x="372" y="84" width="536" height="356" fill="url(#navFadeX)"/>
+    </mask>
+    <mask id="navMaskY" maskUnits="userSpaceOnUse" x="0" y="0" width="1280" height="600">
+      <rect x="372" y="84" width="536" height="356" fill="url(#navFadeY)"/>
+    </mask>
+    <linearGradient id="navBanner" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ff7a32"/>
+      <stop offset="1" stop-color="#c8400f"/>
+    </linearGradient>
+  </defs>
+
+  <g id="nav">
+    <g mask="url(#navMaskY)"><g mask="url(#navMaskX)">
+      <rect x="372" y="84" width="536" height="356" fill="#0a111d"/>
+      <g id="world"></g>
+    </g></g>
+    <path d="M640 322l15 34-15-8-15 8z" fill="var(--orange)" opacity=".6" filter="url(#blur6)"/>
+    <path d="M640 322l15 34-15-8-15 8z" fill="#fff" stroke="var(--orange)" stroke-width="2.5" stroke-linejoin="round"/>
+    <rect x="530" y="96" width="220" height="50" rx="10" fill="var(--orange)" opacity=".4" filter="url(#blur6)"/>
+    <rect x="530" y="96" width="220" height="50" rx="10" fill="url(#navBanner)"/>
+    <g id="turnArrow" transform="translate(560 121)" fill="none" stroke="#fff" stroke-width="4"
+       stroke-linecap="round" stroke-linejoin="round"><path/><path/></g>
+    <text x="588" y="117" font-size="25" font-weight="600" id="turnDist">---</text>
+    <text x="589" y="138" font-size="12.5" id="turnStreet" style="fill:#ffe6d6"></text>
+    <circle cx="792" cy="121" r="21" fill="#fff" stroke="#e01b1b" stroke-width="5"/>
+    <g id="limit" fill="none" stroke="#14171b" stroke-width="2.2" stroke-linejoin="round"></g>
+    <rect x="512" y="394" width="256" height="30" rx="15" fill="#05080d" fill-opacity=".85" stroke="#2a3443"/>
+    <text x="640" y="414" font-size="15" text-anchor="middle">
+      <tspan id="navLeft">-</tspan><tspan class="muted" font-size="12"> km</tspan>
+      <tspan dx="10" id="navEta">--:--</tspan>
+      <tspan dx="10" id="navTime">-</tspan>
+    </text>
+  </g>
+
+  <g id="tacho"></g>
+  <g id="speedo"></g>
+
+  <g id="turnL" transform="translate(424 36)"></g>
+  <text x="585" y="62" text-anchor="middle" id="clock" font-size="21">--:--</text>
+  <text x="695" y="62" text-anchor="middle" font-size="21"><tspan id="vbatTop">--.-</tspan><tspan font-size="15" class="muted" dx="3">V</tspan></text>
+  <g id="turnR" transform="translate(822 36)"></g>
+  <path d="M478 78H802" stroke="url(#lineFade)" stroke-width="5" filter="url(#blur3)" opacity=".8"/>
+  <path d="M478 78H802" stroke="url(#lineFade)" stroke-width="2"/>
+
+  <rect id="tapUp" x="500" y="84" width="280" height="140" fill="transparent"/>
+  <rect id="tapDown" x="500" y="224" width="280" height="140" fill="transparent"/>
+
+  <g id="center" style="pointer-events:none">
+    <g id="menu" class="view"></g>
+    <g id="pages"></g>
+    <g id="alert" class="view">
+      <rect x="532" y="104" width="216" height="168" rx="8" fill="url(#card)"/>
+      <g id="alertIcon" transform="translate(618 124)"></g>
+      <text x="640" y="214" text-anchor="middle" font-size="16" id="alertL1" style="fill:#14171b"></text>
+      <text x="640" y="240" text-anchor="middle" font-size="16" id="alertL2" style="fill:#14171b"></text>
+    </g>
+  </g>
+
+  <g id="funnel"></g>
+
+  <path d="M70 440H468Q498 440 516 470H764Q782 440 812 440H1210" fill="none"
+        stroke="url(#lineFade)" stroke-width="6" filter="url(#blur6)" opacity=".75"/>
+  <path d="M70 440H468Q498 440 516 470H764Q782 440 812 440H1210" fill="none"
+        stroke="url(#lineFade)" stroke-width="2"/>
+
+  <g id="cltIcon" transform="translate(110 456)"></g>
+  <g id="cltScale"></g>
+  <g id="fuelScale"></g>
+  <g id="fuelIcon" transform="translate(1140 456)"></g>
+
+  <g id="lampsL"></g>
+  <text x="616" y="550" text-anchor="end" font-size="21"><tspan>A</tspan> <tspan id="trip" style="cursor:pointer">0.0</tspan><tspan font-size="15" class="muted" dx="3">km</tspan></text>
+  <text x="640" y="550" font-size="21"><tspan id="odo">000000</tspan><tspan font-size="15" class="muted" dx="3">km</tspan></text>
+  <g id="lampsR"></g>
+  <text x="640" y="577" text-anchor="middle" id="status">подключение…</text>
+</svg>
+
+<script src="js/icons.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

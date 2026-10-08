@@ -1,0 +1,49 @@
+@font-face { font-family: "Exo 2"; font-weight: 400; src: url(fonts/exo2-latin-400.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF, U+2212; }
+@font-face { font-family: "Exo 2"; font-weight: 400; src: url(fonts/exo2-cyrillic-400.woff2) format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: "Exo 2"; font-weight: 600; src: url(fonts/exo2-latin-600.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+2000-206F, U+2190-21FF, U+2212; }
+@font-face { font-family: "Exo 2"; font-weight: 600; src: url(fonts/exo2-cyrillic-600.woff2) format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+
+:root {
+  --text: #f2f4f7;
+  --muted: #9aa3ae;
+  --amber: #f5a614;
+  --scale: #e2c729;
+  --orange: #ff6a26;
+  --red: #ff2d2d;
+  --green: #39d353;
+  --blue: #3c8cff;
+  --yellow: #ffb300;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden;
+  background: radial-gradient(ellipse 70% 75% at 50% 42%, #16191e 0%, #0a0b0d 60%, #030303 100%) #030303;
+  -webkit-user-select: none; user-select: none; }
+#dash { display: block; width: 100vw; height: 100vh; }
+text { fill: var(--text); font-family: "Exo 2", "Roboto", Arial, sans-serif; font-weight: 400; }
+.muted { fill: var(--muted); }
+.scaleNum { font-size: 30px; text-anchor: middle; dominant-baseline: central; }
+.scaleNum.red { fill: var(--red); }
+.tick { stroke: #fff; stroke-width: 3; }
+.tick.red { stroke: var(--red); }
+.seg { fill: none; stroke: #59616c; stroke-width: 1.5; }
+.seg.on { fill: #f2f4f7; stroke: #f2f4f7; }
+.seg.redOff { stroke: var(--red); }
+.seg.on.red { fill: var(--red); stroke: var(--red); }
+.lamp { opacity: .07; transition: opacity .08s; }
+.lamp.on { opacity: 1; filter: drop-shadow(0 0 5px currentColor); }
+.ico svg * { fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.ico svg .fill { fill: currentColor; stroke: none; }
+.ico svg .cut { stroke: #050607; }
+.view { display: none; }
+.view.on { display: inline; }
+#nav { opacity: 0; pointer-events: none; }
+#navLabels text { fill: #8796ad; text-anchor: middle; dominant-baseline: central; }
+#navLabels text.area { fill: #5d6b80; letter-spacing: 2px; }
+.over { fill: var(--red) !important; }
+#status { font-size: 12px; fill: #333; }
+#status.demo { fill: var(--yellow); }
+#status.live { fill: var(--green); }
