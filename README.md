@@ -15,7 +15,7 @@ SoulDrive заменяет штатный стрелочный щиток кар
 
 **Демо-ролик (60 с):** [docs/SoulDrive_demo_music.mp4](docs/SoulDrive_demo_music.mp4) с музыкой,
 [docs/SoulDrive_demo.mp4](docs/SoulDrive_demo.mp4) без звука. Ролик отрисован покадрово из этого же
-`web/index.html` скриптом `tools/make_video.py`. Музыку синтезирует `tools/make_music.py`, она своя, без чужих сэмплов.
+`web/index.html`. Музыка к ролику своя, без чужих сэмплов.
 В конце ролика логотип из брендбука SoulDrive: значок SD и надпись SOULDRIVE, белые PNG в `web/brand/`, вырезаны из PDF брендбука.
 
 ## Что показывает
@@ -58,7 +58,6 @@ docs/
   WIRING_2109.md   подключение к жгуту 2109
   CALIBRATION.md   калибровка датчиков
   img/             структурная схема, макеты экрана, корпуса и установки
-tools/             скрипты, генерирующие схемы, плату, рисунки и ролик
 ```
 
 ## Быстрый старт
@@ -69,8 +68,9 @@ tools/             скрипты, генерирующие схемы, плат
 
 ### Собрать и прошить
 
+Нужен [PlatformIO](https://platformio.org/).
+
 ```bash
-pip install platformio
 cd firmware
 pio run -t upload        # прошивка
 pio run -t uploadfs      # экран приборов в память ESP32
@@ -84,29 +84,6 @@ pio run -e esp32dev-demo -t upload && pio run -e esp32dev-demo -t uploadfs
 
 Подключите планшет к Wi-Fi **SoulDrive** (пароль `souldrive2109`) и откройте
 `http://192.168.4.1`.
-
-### Перегенерировать схемы и рисунки
-
-```bash
-pip install schemdraw matplotlib numpy scipy
-python tools/gen_pcb.py          # трассировка и рендер платы (~30 с)
-python tools/gen_schematics.py   # листы схемы и hardware/SoulDrive_docs.pdf
-python tools/gen_diagrams.py
-```
-
-### Инструменты
-
-| Скрипт | Что делает | Зависимости |
-|---|---|---|
-| `tools/sd_design.py` | таблица соединений: общие обозначения для схемы и платы | — |
-| `tools/gen_pcb.py` | размещение, трассировка и рендер платы → `hardware/pcb/` | matplotlib, numpy, scipy |
-| `tools/gen_schematics.py` | листы схемы A3 и `hardware/SoulDrive_docs.pdf` | schemdraw, matplotlib |
-| `tools/gen_diagrams.py` | структурная схема, корпус и установка → `docs/img/` | matplotlib |
-| `tools/make_screens.py` | скриншоты экрана в демо-режиме → `docs/img/ui_*.jpg` | playwright |
-| `tools/make_video.py` | демо-ролик 60 с, 1920×1080 → `docs/SoulDrive_demo.mp4`; с аргументами `5 30 44` — только кадры на этих секундах (PNG) | playwright, imageio-ffmpeg |
-| `tools/make_music.py` | музыка к ролику → `docs/SoulDrive_music.wav` | numpy |
-
-Для скриптов с Playwright один раз выполните `python -m playwright install chromium`.
 
 ## Архитектура
 
@@ -138,8 +115,7 @@ python tools/gen_diagrams.py
 «мёртвой зоной» ниже ~150 мВ, контрольные лампы с дребезгом контактов.
 
 ```bash
-firmware/test_host/run.sh      # 83 проверки + сохранение пробега после выключения питания
-python firmware/test_host/e2e.py   # кадры прошивки → SSE → настоящий web/index.html в браузере
+firmware/test_host/run.sh   # 83 проверки + сохранение пробега после выключения питания
 ```
 
 Что проверяется: пуск двигателя, обороты 200–6500 и перегазовка, скорость 3–180 км/ч,
@@ -202,21 +178,6 @@ python firmware/test_host/e2e.py   # кадры прошивки → SSE → н�
   - стальной градиент колец.
 - **Предупреждения** выводятся серой карточкой поверх бортового компьютера:
   давление масла, заряд, перегрев, ручник/ТЖ, напряжение, резерв топлива.
-
-## Происхождение идеи
-
-Идея заменить щиток экраном, на который выводятся данные с датчиков автомобиля,
-взята у проекта **Venator** (разработчик Frud, форум compcar.ru; описания сборки
-на [drive2.ru](https://www.drive2.ru/l/495724164305387809/) и
-[pikabu.ru](https://pikabu.ru/story/kak_ya_sobiral_panel_priborov_venator_7264770)).
-Venator — закрытый коммерческий продукт: Arduino Mega, шилд и Android-приложение
-на Adobe AIR.
-
-В SoulDrive **не использованы** код, схемы или файлы Venator. Здесь разработаны свои:
-- прошивка;
-- схема входных цепей на оптопарах;
-- адаптация под ВАЗ-2109;
-- веб-интерфейс вместо закрытого приложения.
 
 ## Лицензия
 
